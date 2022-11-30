@@ -10,6 +10,11 @@ async def on_ready():
     print('r')
 
 @client.event
+async def on_typing(channel, user):
+    if channel.guild.id == 913268801599078471:
+        await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name=f"{user.display_name}#{user.discriminator} 👀"))    
+
+@client.event
 async def on_message(m):
     if (m.author.id == 437808476106784770 or m.author.id == 318259292820078592) and m.channel.id == 913436481429835796 and len(m.content) > 15:
 
@@ -105,7 +110,7 @@ async def on_message(m):
                     f.write(m.content)
                     f.close()
                     async with aiohttp.ClientSession() as session:
-                        webhook = Webhook.from_url(open('tokens/NWYTwebhook','r').read(), adapter=AsyncWebhookAdapter(session))
+                        webhook = Webhook.from_url('https://discord.com/api/webhooks/937815106388119654/yt4WAcqGMFYMz0QTrinkgWA-PuDyUaPRXx7p0RpnbWo_Sf2vM1-5797RyC4c8jA3DilL', adapter=AsyncWebhookAdapter(session))
                         await webhook.send(content=pc+1, username = m.author.name, avatar_url = m.author.avatar_url)   
                     await m.delete()     
                 else:
