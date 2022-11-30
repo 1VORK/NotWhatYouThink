@@ -110,7 +110,7 @@ async def on_message(m):
                     f.write(m.content)
                     f.close()
                     async with aiohttp.ClientSession() as session:
-                        webhook = Webhook.from_url('https://discord.com/api/webhooks/937815106388119654/yt4WAcqGMFYMz0QTrinkgWA-PuDyUaPRXx7p0RpnbWo_Sf2vM1-5797RyC4c8jA3DilL', adapter=AsyncWebhookAdapter(session))
+                        webhook = Webhook.from_url(open('tokens/NWYTwebhook','r').read(), adapter=AsyncWebhookAdapter(session))
                         await webhook.send(content=pc+1, username = m.author.name, avatar_url = m.author.avatar_url)   
                     await m.delete()     
                 else:
