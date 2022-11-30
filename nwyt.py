@@ -8,9 +8,10 @@ client=discord.Client(intents=discord.Intents.all())
 @client.event
 async def on_ready():
     print('r')
-
+    await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name='people type'))
+    
 @client.event
-async def on_typing(channel, user):
+async def on_typing(channel, user, when):
     if channel.guild.id == 913268801599078471:
         await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name=f"{user.display_name}#{user.discriminator} 👀"))    
 
